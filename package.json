@@ -26,6 +26,7 @@
     "dev-server": "^0.2.0",
     "dotenv-webpack": "^8.0.1",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^29.3.1",
     "mini-css-extract-plugin": "^2.7.2",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
     "webpack": "^5.75.0",
