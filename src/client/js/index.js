@@ -1,5 +1,3 @@
-import "../styles/main.scss";
-
 const weatherApiKey = process.env.WEATHER_API_KEY;
 const baseURL = " http://api.weatherbit.io/v2.0/current"
 let button = document.getElementById('submitBtn');
@@ -7,6 +5,7 @@ let button = document.getElementById('submitBtn');
 const submitForm = async () => {
     weatherAPI();
 }
+console.log(weatherApiKey);
 
 
 export const weatherAPI = async () => {
