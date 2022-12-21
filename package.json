@@ -4,7 +4,8 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --config webpack.dev.js --open"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,22 @@
   "bugs": {
     "url": "https://github.com/ColeLybbert/fend-final/issues"
   },
-  "homepage": "https://github.com/ColeLybbert/fend-final#readme"
+  "homepage": "https://github.com/ColeLybbert/fend-final#readme",
+  "dependencies": {
+    "@babel/core": "^7.20.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-modules-commonjs": "^7.19.6",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.0",
+    "dev-server": "^0.2.0",
+    "dotenv-webpack": "^8.0.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.2",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "webpack": "^5.75.0",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.0.1"
+  }
 }

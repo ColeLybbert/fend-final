@@ -10,7 +10,7 @@ const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   mode: "development",
-  entry: path.resolve(__dirname, "src/index.js"),
+  entry: path.resolve(__dirname, "src/client/js/index.js"),
   devtool: "source-map",
   stats: "verbose",
   output: {
@@ -57,7 +57,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "lang-website",
       filename: "index.html",
-      template: "src/views/template.html",
+      template: "src/client/html/index.html",
     }),
     new MiniCssExtractPlugin({ filename: "[name].css" }),
   ],
