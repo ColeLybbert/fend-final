@@ -27,6 +27,7 @@
     "babel-loader": "^9.1.0",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
+    "css-loader": "^6.7.3",
     "dev-server": "^0.2.0",
     "dotenv-webpack": "^8.0.1",
     "html-webpack-plugin": "^5.5.0",
@@ -34,6 +35,8 @@
     "mini-css-extract-plugin": "^2.7.2",
     "node-fetch": "^3.3.0",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "sass": "^1.57.1",
+    "sass-loader": "^13.2.0",
     "webpack": "^5.75.0",
     "webpack-dev-server": "^4.11.1"
   },
