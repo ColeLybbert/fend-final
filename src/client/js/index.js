@@ -3,14 +3,14 @@ const baseURL = " http://api.weatherbit.io/v2.0/current"
 let button = document.getElementById('submitBtn');
 
 const submitForm = async () => {
-    weatherAPI();
+    weatherAPI(baseURL,weatherApiKey);
 }
 console.log(weatherApiKey);
 
 
-export const weatherAPI = async () => {
+export const weatherAPI = async (baseUrl,apiKey) => {
     try{
-        const res = await fetch(`${baseURL}?lat=35.7796&lon=-78.6382&key=${weatherApiKey}&include=minutely`);
+        const res = await fetch(`${baseUrl}?lat=35.7796&lon=-78.6382&key=${apiKey}&include=minutely`);
         const data = await res.json();
         console.log(data);
         return (data);

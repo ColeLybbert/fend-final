@@ -43,7 +43,13 @@
     "webpack-dev-server": "^4.11.1"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "isomorphic-fetch": "^3.0.0",
+=======
+    "dotenv": "^16.0.3",
+    "isomorphic-fetch": "^3.0.0",
+    "jest-environment-jsdom": "^29.3.1",
+>>>>>>> 0c42555997682d95266490984b3914c1e6a5ba9b
     "webpack-cli": "^5.0.1"
   }
 }
