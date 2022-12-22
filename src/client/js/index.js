@@ -5,6 +5,7 @@ let button = document.getElementById('submitBtn');
 const submitForm = async () => {
     weatherAPI(baseURL,weatherApiKey);
 }
+console.log(weatherApiKey);
 
 
 export const weatherAPI = async (baseUrl,apiKey) => {
