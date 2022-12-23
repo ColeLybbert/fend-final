@@ -10,6 +10,7 @@ console.log(weatherApiKey);
 
 export const weatherAPI = async (baseUrl,apiKey) => {
     try{
+        //WRONG! hardcoded. Needs to be zipcode from a parameter that will later be user input
         const res = await fetch(`${baseUrl}?lat=35.7796&lon=-78.6382&key=${apiKey}&include=minutely`);
         const data = await res.json();
         console.log(data);
