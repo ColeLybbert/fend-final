@@ -12,5 +12,8 @@ describe('Test Weather API', function () {
         expect(data).toEqual('here we need to see how to make sure the data isnt wrong or undefined');
     });
 
-    
+    test('City is String', async () => {
+        let data = await weatherAPI(baseURL,weatherApiKey);
+        expect(data.data).toEqual('sure');
+    })
 });
