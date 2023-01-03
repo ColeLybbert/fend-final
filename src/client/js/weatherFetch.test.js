@@ -103,8 +103,8 @@ describe('Test Weather API', function () {
     test('pod should be a string', async () => {
         expect(typeof data.pod).toBe('string');
     });
-    test('precip should be a object', async () => {
-        expect(typeof data.precip).toBe('string');
+    test('precip should be null or a number', async () => {
+        expect(['number','object']).toContain(typeof data.precip);
     });
     test('pres should be number', async () => {
         expect(typeof data.pres).toBe('number');
@@ -115,7 +115,7 @@ describe('Test Weather API', function () {
     test('slp should be number', async () => {
         expect(typeof data.slp).toBe('number');
     });
-    test('snow should be object', async () => {
+    test('snow should be null or a number', async () => {
         expect(['number','object']).toContain(typeof data.snow);
     });
     test('solar rad should be number', async () => {
