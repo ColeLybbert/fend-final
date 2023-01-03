@@ -116,7 +116,7 @@ describe('Test Weather API', function () {
         expect(typeof data.slp).toBe('number');
     });
     test('snow should be object', async () => {
-        expect(typeof data.snow).toBe('string');
+        expect(['number','object']).toContain(typeof data.snow);
     });
     test('solar rad should be number', async () => {
         expect(typeof data.solar_rad).toBe('number');
