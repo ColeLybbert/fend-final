@@ -97,6 +97,24 @@ describe('Test Weather API', function () {
     test('lon should be number', async () => {
         expect(typeof data.lon).toBe('number');
     });
+    test('ob time should be a string', async () => {
+        expect(typeof data.ob_time).toBe('string');
+    });
+    test('pod should be a string', async () => {
+        expect(typeof data.pod).toBe('string');
+    });
+    test('precip should be a object', async () => {
+        expect(typeof data.precip).toBe('string');
+    });
+    test('pres should be number', async () => {
+        expect(typeof data.pres).toBe('number');
+    });
+    test('rh should be number', async () => {
+        expect(typeof data.rh).toBe('number');
+    });
+    test('slp should be number', async () => {
+        expect(typeof data.slp).toBe('number');
+    });
     test('snow should be object', async () => {
         expect(typeof data.snow).toBe('string');
     });
@@ -138,5 +156,20 @@ describe('Test Weather API', function () {
     });
     test('weather description should be string', async () => {
         expect(typeof data.weather.description).toBe('string');
+    });
+    test('weather icon should be string', async () => {
+        expect(typeof data.weather.icon).toBe('string');
+    });
+    test('wind cdir should be string', async () => {
+        expect(typeof data.wind_cdir).toBe('string');
+    });
+    test('wind cdir full should be string', async () => {
+        expect(typeof data.wind_cdir_full).toBe('string');
+    });
+    test('wind dir should be number', async () => {
+        expect(typeof data.wind_dir).toBe('number');
+    });
+    test('wind spd should be number', async () => {
+        expect(typeof data.wind_spd).toBe('number');
     });
 });
