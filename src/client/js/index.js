@@ -8,7 +8,6 @@ const submitForm = async () => {
 }
 console.log(weatherApiKey);
 
-
 export const weatherAPI = async (baseUrl,apiKey) => {
     try{
         //WRONG! hardcoded. Needs to be zipcode from a parameter that will later be user input
