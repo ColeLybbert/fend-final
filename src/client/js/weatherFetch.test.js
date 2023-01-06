@@ -176,7 +176,7 @@ describe('Test Weather API', function () {
     });
 });
 
-describe('Test is weatherAPI will use data set from geoAPI', () => {
+describe('Test if weatherAPI will use data set from geoAPI', () => {
     test('weather api should receive lat lon url, lat=35.7721&lon=-78.63861 ', async () => {
         let formInput = 'raleigh'
         let geoData = await geoAPI(formInput);
