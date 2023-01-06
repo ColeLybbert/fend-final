@@ -1,3 +1,5 @@
+import { returnLatLon } from "./weatherFetch";
+import { geoAPI } from "./geoFetch";
 
 export const mockData = {
     count: 1,
@@ -173,3 +175,12 @@ describe('Test Weather API', function () {
         expect(typeof data.wind_spd).toBe('number');
     });
 });
+
+describe('Test is weatherAPI will use data set from geoAPI', () => {
+    test('weather api should receive lat lon url, lat=35.7721&lon=-78.63861 ', async () => {
+        let formInput = 'raleigh'
+        let geoData = await geoAPI(formInput);
+        let latlon = await returnLatLon(geoData);
+        expect(latlon).toBe('lat=35.7721&lon=-78.63861');
+    })
+})

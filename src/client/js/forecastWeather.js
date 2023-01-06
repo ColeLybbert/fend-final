@@ -1,12 +1,12 @@
 import { weatherApiKey } from "../../../mockJSEnv";
 import { geoAPI } from "./geoFetch";
-const weatherBaseUrl = " http://api.weatherbit.io/v2.0/current"
+const baseUrl = 'http://api.weatherbit.io/v2.0/forecast/daily';
 
-export const weatherAPI = async (formInput) => {
+export const forecastWeather = async (formInput) => {
     try{
         let data = await geoAPI(formInput);
         let latlon = await returnLatLon(data)
-        const res = await fetch(`${weatherBaseUrl}?${latlon}&key=${weatherApiKey}&include=minutely`);
+        const res = await fetch(`${baseUrl}?${latlon}&key=${weatherApiKey}&include=minutely`);
         const weatherData = await res.json();
         console.log(weatherData);
         return (weatherData);
