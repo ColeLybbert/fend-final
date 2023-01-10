@@ -7,9 +7,9 @@ export const forecastWeather = async (formInput) => {
         let data = await geoAPI(formInput);
         let latlon = await returnLatLon(data)
         const res = await fetch(`${baseUrl}?${latlon}&key=${weatherApiKey}&include=minutely`);
-        const weatherData = await res.json();
-        console.log(weatherData);
-        return (weatherData);
+        const apiData = await res.json();
+        console.log(apiData);
+        return (apiData);
     }catch (err) {
         return `Failed ${err}`
     }

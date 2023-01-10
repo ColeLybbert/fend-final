@@ -1,17 +1,18 @@
 import { pixAPI } from "./pixFetch";
 import { geoAPI } from "./geoFetch";
-import { weatherAPI } from "./weatherFetch";
-import { forecastWeather } from "./forecastWeather";
 import { checkForDate } from "./checkForDate";
 import { forecastOrCurrent } from "./forecastOrCurrent";
 
 let formInput = "Raleigh"
 
-let dateInput = new Date();
+
+let dateInput = Date.now() + (1000 * 60 * 60 * 24 * 8)
 
 let button = document.getElementById('submitBtn')
 
 const submitForm = async () => {
+    pixAPI(formInput);
+    geoAPI(formInput);
     checkForDate(dateInput);
     await forecastOrCurrent(dateInput);
 }
