@@ -1,4 +1,4 @@
-import { checkForDate } from "./checkForDate"
+import { checkForDate } from "../js/checkForDate"
 
 describe('Test if forecastOrCurrent will use data sent from checkForDate', () => {
     test(' forecastOrCurrent should receive false', async () => {

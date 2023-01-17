@@ -2,6 +2,7 @@ import { weatherApiKey } from "../../../mockJSEnv";
 import { geoAPI } from "./geoFetch";
 const baseUrl = 'http://api.weatherbit.io/v2.0/forecast/daily';
 
+//Fetches forecast weather data and returns it, the data is weather for a specific location after a weeks time
 export const forecastWeather = async (formInput) => {
     try{
         let data = await geoAPI(formInput);
@@ -15,6 +16,7 @@ export const forecastWeather = async (formInput) => {
     }
 }
 
+//Needed to run forecastWeather, this returns the coordinates for the user entered location from geoAPI
 export const returnLatLon = async (data) => {
     try {
         let latlon = `lat=${data.geonames[0].lat}&lon=${data.geonames[0].lng}`;

@@ -1,4 +1,4 @@
-import { checkForDate } from "./checkForDate";
+import { checkForDate } from "../js/checkForDate";
 
 describe('Test structure of checkForDate.js', () => {
     test('If checkForDate properly returns true if date is over a week', async () => {

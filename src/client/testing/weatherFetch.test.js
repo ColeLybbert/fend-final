@@ -1,5 +1,5 @@
-import { returnLatLon } from "./weatherFetch";
-import { geoAPI } from "./geoFetch";
+import { returnLatLon } from "../js/weatherFetch";
+import { geoAPI } from "../js/geoFetch";
 
 export const mockData = {
     count: 1,

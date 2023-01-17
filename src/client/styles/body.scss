@@ -1,7 +1,26 @@
 body {
-    background-color: black;
-}
+    width: 100%;
+    margin: 0;
 
-h1 {
-    color: white;
+    #mainBody {
+        margin-top: 10%;
+        background-color: #CC252C;
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+
+        form {
+            width: 100%;
+            
+            h2 {
+                margin: 5%;
+                width: 40%;
+            }
+
+            input {
+                margin: 5%;
+                width: 40%;
+            }
+        }
+    }
 }

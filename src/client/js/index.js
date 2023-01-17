@@ -1,22 +1,27 @@
+import '../styles/main.scss'
+
+import { secondConverter } from './secondConverter';
 import { pixAPI } from "./pixFetch";
 import { geoAPI } from "./geoFetch";
 import { checkForDate } from "./checkForDate";
 import { forecastOrCurrent } from "./forecastOrCurrent";
+import { formListener } from './listener';
 
-let formInput = "Raleigh"
+//Define form
+let formInput = document.getElementById('placeInput');
 
-
-let dateInput = Date.now() + (1000 * 60 * 60 * 24 * 8)
-
-let button = document.getElementById('submitBtn')
-
+//Runs everything need to work the api's from the other files
 const submitForm = async () => {
+    let formDate = document.getElementById('dateInput').value;
+    let dateInput = await secondConverter(formDate);
     pixAPI(formInput);
     geoAPI(formInput);
-    checkForDate(dateInput);
+    await checkForDate(dateInput);
     await forecastOrCurrent(dateInput);
-}
+    console.log(dateInput);
+};
 
-button.addEventListener('click', () => {
-    submitForm(formInput, dateInput);
-})
+//Imported EventListener that runs submitForm
+document.addEventListener('DOMContentLoaded', function () {
+  formListener(submitForm);
+});
