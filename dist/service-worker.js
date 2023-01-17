@@ -82,10 +82,13 @@ define(['./workbox-8b6cdeda'], (function (workbox) { 'use strict';
    */
   workbox.precacheAndRoute([{
     "url": "bundle.js",
-    "revision": "a14e0db3237d682da9925aa9530a53ee"
+    "revision": "0f6e9726edce34318433dc4cf3cc7c6a"
   }, {
     "url": "index.html",
-    "revision": "f56e6a5e6c933729a60d7fc9b5664c8b"
+    "revision": "4534a493155dfad311b93204b0664c2b"
+  }, {
+    "url": "main.css",
+    "revision": "fbffd20602251b026da20a4259cfb450"
   }], {});
 
 }));

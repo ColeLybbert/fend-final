@@ -1,0 +1,37 @@
+/*!**********************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/client/styles/main.scss ***!
+  \**********************************************************************************************************************/
+body {
+  width: 100%;
+  margin: 0;
+}
+body #mainBody {
+  margin-top: 10%;
+  background-color: #CC252C;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+body #mainBody form {
+  width: 100%;
+}
+body #mainBody form h2 {
+  margin: 5%;
+  width: 40%;
+}
+body #mainBody form input {
+  margin: 5%;
+  width: 40%;
+}
+
+header {
+  background-color: #053758;
+  margin: 0;
+}
+header h1 {
+  margin: 0;
+  color: white;
+  border: 1px black solid;
+}
+
+/*# sourceMappingURL=main.css.map*/
