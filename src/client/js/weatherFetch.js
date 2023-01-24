@@ -9,7 +9,7 @@ export const weatherAPI = async (formInput) => {
         let latlon = await returnLatLon(data)
         const res = await fetch(`${weatherBaseUrl}?${latlon}&key=${weatherApiKey}&include=minutely`);
         const apiData = await res.json();
-        console.log(apiData);
+        console.log(apiData)
         return (apiData);
     }catch (err) {
         return `Failed ${err}`

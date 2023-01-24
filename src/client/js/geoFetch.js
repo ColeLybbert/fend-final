@@ -7,7 +7,6 @@ export const geoAPI = async (formInput) => {
     try{
         const res = await fetch(`${geoBaseUrl}q=${formInput}&maxRows=10&username=${geoApiKey}`);
         const apiData = await res.json();
-        console.log(`Returned geo Data`);
         postData(apiData);
         return (apiData);
     }catch (err) {

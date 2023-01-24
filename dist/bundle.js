@@ -77,6 +77,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "forecastOrCurrent": () => (/* binding */ forecastOrCurrent)
 /* harmony export */ });
 /* harmony import */ var _checkForDate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./checkForDate */ "./src/client/js/checkForDate.js");
+/* harmony import */ var _forecastWeather__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./forecastWeather */ "./src/client/js/forecastWeather.js");
+/* harmony import */ var _weatherFetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./weatherFetch */ "./src/client/js/weatherFetch.js");
+
+
 
 
 //Takes the defined "Week Away" from checkForDate.js, essentially if checkForDate returned true it will fetch the forecast api, if not it will run the current weather api 
@@ -84,9 +88,52 @@ const forecastOrCurrent = async (dateInput) => {
     let weekAway = await (0,_checkForDate__WEBPACK_IMPORTED_MODULE_0__.checkForDate)(dateInput);
     console.log(weekAway);
     if (weekAway) {
-        console.log(`Running Forcast API`)
+        (0,_forecastWeather__WEBPACK_IMPORTED_MODULE_1__.forecastWeather)();
     }else {
-        console.log(`Running current API`)
+        (0,_weatherFetch__WEBPACK_IMPORTED_MODULE_2__.weatherAPI)();
+    }
+}
+
+/***/ }),
+
+/***/ "./src/client/js/forecastWeather.js":
+/*!******************************************!*\
+  !*** ./src/client/js/forecastWeather.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "forecastWeather": () => (/* binding */ forecastWeather),
+/* harmony export */   "returnLatLon": () => (/* binding */ returnLatLon)
+/* harmony export */ });
+/* harmony import */ var _mockJSEnv__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../mockJSEnv */ "./mockJSEnv.js");
+/* harmony import */ var _geoFetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./geoFetch */ "./src/client/js/geoFetch.js");
+
+
+const baseUrl = 'http://api.weatherbit.io/v2.0/forecast/daily';
+
+//Fetches forecast weather data and returns it, the data is weather for a specific location after a weeks time
+const forecastWeather = async (formInput) => {
+    try{
+        let data = await (0,_geoFetch__WEBPACK_IMPORTED_MODULE_1__.geoAPI)(formInput);
+        let latlon = await returnLatLon(data)
+        const res = await fetch(`${baseUrl}?${latlon}&key=${_mockJSEnv__WEBPACK_IMPORTED_MODULE_0__.weatherApiKey}&include=minutely`);
+        const apiData = await res.json();
+        console.log(apiData);
+        return (apiData);
+    }catch (err) {
+        return `Failed ${err}`
+    }
+}
+
+//Needed to run forecastWeather, this returns the coordinates for the user entered location from geoAPI
+const returnLatLon = async (data) => {
+    try {
+        let latlon = `lon=${data.geonames[0].lng}&lat=${data.geonames[0].lat}`;
+        return latlon
+    }catch (err){
+        `Failed: ${err}`
     }
 }
 
@@ -223,6 +270,49 @@ const secondConverter = async (formDate) => {
         let dateInput = date.getTime()
         return dateInput
     } catch (err) {
+        `Failed: ${err}`
+    }
+}
+
+/***/ }),
+
+/***/ "./src/client/js/weatherFetch.js":
+/*!***************************************!*\
+  !*** ./src/client/js/weatherFetch.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "returnLatLon": () => (/* binding */ returnLatLon),
+/* harmony export */   "weatherAPI": () => (/* binding */ weatherAPI)
+/* harmony export */ });
+/* harmony import */ var _mockJSEnv__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../mockJSEnv */ "./mockJSEnv.js");
+/* harmony import */ var _geoFetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./geoFetch */ "./src/client/js/geoFetch.js");
+
+
+const weatherBaseUrl = " http://api.weatherbit.io/v2.0/current"
+
+////Fetches current weather data and returns it, the data is weather for a specific location within a weeks time
+const weatherAPI = async (formInput) => {
+    try{
+        let data = await (0,_geoFetch__WEBPACK_IMPORTED_MODULE_1__.geoAPI)(formInput);
+        let latlon = await returnLatLon(data)
+        const res = await fetch(`${weatherBaseUrl}?${latlon}&key=${_mockJSEnv__WEBPACK_IMPORTED_MODULE_0__.weatherApiKey}&include=minutely`);
+        const apiData = await res.json();
+        console.log(apiData);
+        return (apiData);
+    }catch (err) {
+        return `Failed ${err}`
+    }
+}
+
+//Needed to run weatherAPI, this returns the coordinates for the user entered location from geoAPI
+const returnLatLon = async (data) => {
+    try {
+        let latlon = `lon=${data.geonames[0].lng}&lat=${data.geonames[0].lat}`;
+        return latlon
+    }catch (err){
         `Failed: ${err}`
     }
 }
