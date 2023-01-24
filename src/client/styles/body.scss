@@ -61,6 +61,7 @@ body {
                         padding-right: 5%;
                     }
                 }
+
                 @media screen and (min-width: $medium) {
                     input {
                         width: 25%;
@@ -86,14 +87,14 @@ body {
                 border: 1px solid black;
             }
 
-            @media screen and (min-width: $small){
+            @media screen and (min-width: $small) {
                 #submitBtn {
                     width: 20%;
                     margin: 2% 25%;
                 }
             }
 
-            @media screen and (min-width: $large){
+            @media screen and (min-width: $large) {
                 #submitBtn {
                     width: 10%;
                     margin: 2% 25%;
@@ -118,16 +119,19 @@ body {
                         height: 12rem;
                     }
                 }
+
                 @media screen and (min-width: $medium) and (max-width: $large) {
                     .formPictures {
                         height: 14rem;
                     }
                 }
+
                 @media screen and (min-width: $large) and (max-width: $veryLarge) {
                     .formPictures {
                         height: 16rem;
                     }
                 }
+
                 @media screen and (min-width: $veryLarge) {
                     .formPictures {
                         height: 24rem;
@@ -165,6 +169,7 @@ body {
                         border-right: 1px solid black;
                         font-weight: 100;
                     }
+
                     #maxTemp {
                         width: 40%;
                         margin: 1% 8% 1% 0%;
@@ -172,7 +177,7 @@ body {
                         border-left: 1px solid black;
                     }
 
-                    @media screen and (min-width: $verySmall) and (max-width: $small){
+                    @media screen and (min-width: $verySmall) and (max-width: $small) {
                         #minTemp {
                             width: 35%;
                             margin: 1% 0% 1% 0%;
@@ -186,7 +191,7 @@ body {
                         }
                     }
 
-                    @media screen and (min-width: $small) and (max-width: 529px){
+                    @media screen and (min-width: $small) and (max-width: 529px) {
                         #minTemp {
                             width: 49%;
                             margin: 1% 0% 1% 0%;
@@ -200,7 +205,7 @@ body {
                         }
                     }
 
-                    @media screen and (min-width: 530px) and (max-width: $medium){
+                    @media screen and (min-width: 530px) and (max-width: $medium) {
                         #minTemp {
                             width: 37%;
                             margin: 1% 0% 1% 0%;
@@ -214,7 +219,7 @@ body {
                         }
                     }
 
-                    @media screen and (min-width: $large) and (max-width: $veryLarge){
+                    @media screen and (min-width: $large) and (max-width: $veryLarge) {
                         #minTemp {
                             width: 32%;
                             margin: 1% 0% 1% 0%;
@@ -245,6 +250,13 @@ body {
                 }
             }
 
+        }
+
+        @media screen and (min-width: $medium) {
+            form {
+                width: 50%;
+                margin: 5% 25%;
+            }
         }
     }
 }
