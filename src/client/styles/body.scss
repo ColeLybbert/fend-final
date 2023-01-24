@@ -41,6 +41,12 @@ body {
                     margin: 2% 0% 2% 2%;
                     width: 90%;
                     padding: 0% 2%;
+                    background-color: grey;
+                    border: none;
+                }
+
+                input:hover {
+                    border: 1px solid black;
                 }
 
                 @media screen and (min-width: $medium) {
@@ -73,6 +79,7 @@ body {
                 width: 30%;
                 margin: 2% 45%;
                 border: none;
+                background-color: gray;
             }
 
             #submitBtn:hover {
