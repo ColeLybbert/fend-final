@@ -11,17 +11,57 @@ var Client;
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "card": () => (/* binding */ card),
 /* harmony export */   "formDate": () => (/* binding */ formDate),
 /* harmony export */   "formInput": () => (/* binding */ formInput),
 /* harmony export */   "geoApiKey": () => (/* binding */ geoApiKey),
 /* harmony export */   "pixApiKey": () => (/* binding */ pixApiKey),
 /* harmony export */   "weatherApiKey": () => (/* binding */ weatherApiKey)
 /* harmony export */ });
-const weatherApiKey = 'ab60368d79a9411cac1a6afcce225d59';
+const weatherApiKey = 'b8bcfc4d5ff94729ad345008167d0424';
 const geoApiKey = 'cole200406';
 const pixApiKey = '32251964-d3a8f6eb7f41a7da2ca59e329';
 const formDate = '2023-01-11T22:41:38.540Z'
 const formInput = "raleigh";
+const card = {
+    app_max_temp: 10.3,
+    app_min_temp: -1.4,
+    clouds: 61,
+    clouds_hi: 0,
+    clouds_low: 61,
+    clouds_mid: 1,
+    datetime: "2023-01-23",
+    dewpt: 1.8,
+    high_temp: 10.3,
+    low_temp: -0.2,
+    max_dhi: null,
+    max_temp: 10.3,
+    min_temp: 0.9,
+    moon_phase: 0.071994,
+    moon_phase_lunation: 0.07,
+    moonrise_ts: 1674482456,
+    moonset_ts: 1674521493,
+    ozone: 302.6,
+    pop: 40,
+    precip: 1.3849945,
+    pres: 1003,
+    rh: 74,
+    slp: 1014.3,
+    snow: 0,
+    snow_depth: 0,
+    sunrise_ts: 1674476421,
+    sunset_ts: 1674513157,
+    temp: 6.6,
+    ts: 1674457260,
+    uv: 3.1,
+    valid_date: "2023-01-23",
+    vis: 22.072,
+    wind_cdir: "W",
+    wind_cdir_full: "west",
+    wind_dir: 272,
+    wind_gust_spd: 9.7,
+    wind_spd: 4.6
+}
 
 /***/ }),
 
@@ -51,13 +91,9 @@ __webpack_require__.r(__webpack_exports__);
 // then returns true if the date Input is greater than a week, and false if it's not
 const checkForDate = async (dateInput) => {
     let overWeek = Date.now() + (1000 * 60 * 60 * 24 * 7)
-    console.log(dateInput);
-    console.log(overWeek);
     if (dateInput > overWeek) {
-        console.log('Greater than a week')
         return true;
     } else {
-        console.log('Less than a week')
         return false;
     }
 }
@@ -84,13 +120,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 //Takes the defined "Week Away" from checkForDate.js, essentially if checkForDate returned true it will fetch the forecast api, if not it will run the current weather api 
-const forecastOrCurrent = async (dateInput) => {
+const forecastOrCurrent = async (dateInput, formInput) => {
     let weekAway = await (0,_checkForDate__WEBPACK_IMPORTED_MODULE_0__.checkForDate)(dateInput);
-    console.log(weekAway);
     if (weekAway) {
-        (0,_forecastWeather__WEBPACK_IMPORTED_MODULE_1__.forecastWeather)();
+        return (0,_forecastWeather__WEBPACK_IMPORTED_MODULE_1__.forecastWeather)(formInput, dateInput);
     }else {
-        (0,_weatherFetch__WEBPACK_IMPORTED_MODULE_2__.weatherAPI)();
+        return (0,_weatherFetch__WEBPACK_IMPORTED_MODULE_2__.weatherAPI)(formInput);
     }
 }
 
@@ -114,13 +149,13 @@ __webpack_require__.r(__webpack_exports__);
 const baseUrl = 'http://api.weatherbit.io/v2.0/forecast/daily';
 
 //Fetches forecast weather data and returns it, the data is weather for a specific location after a weeks time
-const forecastWeather = async (formInput) => {
+const forecastWeather = async (formInput, dateInput) => {
     try{
         let data = await (0,_geoFetch__WEBPACK_IMPORTED_MODULE_1__.geoAPI)(formInput);
         let latlon = await returnLatLon(data)
         const res = await fetch(`${baseUrl}?${latlon}&key=${_mockJSEnv__WEBPACK_IMPORTED_MODULE_0__.weatherApiKey}&include=minutely`);
         const apiData = await res.json();
-        console.log(apiData);
+        console.log(apiData)
         return (apiData);
     }catch (err) {
         return `Failed ${err}`
@@ -130,7 +165,7 @@ const forecastWeather = async (formInput) => {
 //Needed to run forecastWeather, this returns the coordinates for the user entered location from geoAPI
 const returnLatLon = async (data) => {
     try {
-        let latlon = `lon=${data.geonames[0].lng}&lat=${data.geonames[0].lat}`;
+        let latlon = `lat=${data.geonames[0].lat}&lon=${data.geonames[0].lng}`;
         return latlon
     }catch (err){
         `Failed: ${err}`
@@ -160,7 +195,6 @@ const geoAPI = async (formInput) => {
     try{
         const res = await fetch(`${geoBaseUrl}q=${formInput}&maxRows=10&username=${_mockJSEnv__WEBPACK_IMPORTED_MODULE_0__.geoApiKey}`);
         const apiData = await res.json();
-        console.log(`Returned geo Data`);
         (0,_postData__WEBPACK_IMPORTED_MODULE_1__.postData)(apiData);
         return (apiData);
     }catch (err) {
@@ -184,11 +218,14 @@ __webpack_require__.r(__webpack_exports__);
 let form = document.getElementById("inputForm");
 
 //EventListener used in index, listens for form to be submitted
-const formListener = async (submitForm) => {
+const formListener = async (weatherUpdate, pixUpdate) => {
     try {
       form.addEventListener("submit", (event) => {
         event.preventDefault();
-        submitForm(dateInput);
+        let formInput = document.getElementById('placeInput').value;
+        let formDate = document.getElementById('dateInput').value;
+        weatherUpdate(formDate, formInput);
+        pixUpdate(formInput);
       })
     } catch (err) {
         return `Failed: ${err}`
@@ -219,7 +256,6 @@ const pixAPI = async (formInput) => {
     try{
         const res = await fetch(`${pixBaseURL}?key=${_mockJSEnv__WEBPACK_IMPORTED_MODULE_0__.pixApiKey}&q=${formInput}&image_type=photo`);
         const apiData = await res.json();
-        console.log(apiData);
         (0,_postData__WEBPACK_IMPORTED_MODULE_1__.postData)(apiData);
         return (apiData);
     }catch (err) {
@@ -227,6 +263,35 @@ const pixAPI = async (formInput) => {
     }
 }
 
+
+
+/***/ }),
+
+/***/ "./src/client/js/pixUpdate":
+/*!*********************************!*\
+  !*** ./src/client/js/pixUpdate ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "pixUpdate": () => (/* binding */ pixUpdate)
+/* harmony export */ });
+/* harmony import */ var _pixFetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pixFetch */ "./src/client/js/pixFetch.js");
+
+
+// Fetch date from pixApi then take two img sources, make img's in the html for them then display them.
+const pixUpdate = async (formInput) => {
+  let data = await (0,_pixFetch__WEBPACK_IMPORTED_MODULE_0__.pixAPI)(formInput);
+  let pictures = [data.hits[0].previewURL, data.hits[1].previewURL];
+  pictures.forEach(picture => {
+    let div = document.getElementById('pictures');
+    let img = document.createElement('img');
+    img.src = picture;
+    img.classList.add('formPictures');
+    div.appendChild(img);
+  })
+};
 
 
 /***/ }),
@@ -300,7 +365,7 @@ const weatherAPI = async (formInput) => {
         let latlon = await returnLatLon(data)
         const res = await fetch(`${weatherBaseUrl}?${latlon}&key=${_mockJSEnv__WEBPACK_IMPORTED_MODULE_0__.weatherApiKey}&include=minutely`);
         const apiData = await res.json();
-        console.log(apiData);
+        console.log(apiData)
         return (apiData);
     }catch (err) {
         return `Failed ${err}`
@@ -310,12 +375,101 @@ const weatherAPI = async (formInput) => {
 //Needed to run weatherAPI, this returns the coordinates for the user entered location from geoAPI
 const returnLatLon = async (data) => {
     try {
-        let latlon = `lon=${data.geonames[0].lng}&lat=${data.geonames[0].lat}`;
+        let latlon = `lat=${data.geonames[0].lat}&lon=${data.geonames[0].lng}`;
         return latlon
     }catch (err){
         `Failed: ${err}`
     }
 }
+
+/***/ }),
+
+/***/ "./src/client/js/weatherUpdate.js":
+/*!****************************************!*\
+  !*** ./src/client/js/weatherUpdate.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "weatherUpdate": () => (/* binding */ weatherUpdate)
+/* harmony export */ });
+/* harmony import */ var _checkForDate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./checkForDate */ "./src/client/js/checkForDate.js");
+/* harmony import */ var _forecastOrCurrent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./forecastOrCurrent */ "./src/client/js/forecastOrCurrent.js");
+/* harmony import */ var _secondConverter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./secondConverter */ "./src/client/js/secondConverter.js");
+
+
+
+
+//If data is within a week make a card that displays current temp, if it's sunny or rainy or snowy or mix, and the date. If it is over a week do the same thing except take min and max temp for 7 days and average them.
+//Then display the card depending on the date entered.
+const weatherUpdate = async (formDate, formInput) => {
+    let dateInput = await (0,_secondConverter__WEBPACK_IMPORTED_MODULE_2__.secondConverter)(formDate);
+    await (0,_checkForDate__WEBPACK_IMPORTED_MODULE_0__.checkForDate)(dateInput);
+    let data = await (0,_forecastOrCurrent__WEBPACK_IMPORTED_MODULE_1__.forecastOrCurrent)(dateInput, formInput);
+    let trueOrFalse = await (0,_checkForDate__WEBPACK_IMPORTED_MODULE_0__.checkForDate)();
+    if (trueOrFalse){
+      let minAverage = [data.data[0].min_temp + data.data[1].min_temp +data.data[2].min_temp + data.data[3].min_temp + data.data[4].min_temp + data.data[5].min_temp + data.data[6].min_temp / 7]
+      let maxAverage = [data.data[0].max_temp + data.data[1].max_temp +data.data[2].max_temp + data.data[3].max_temp + data.data[4].max_temp + data.data[5].max_temp + data.data[6].max_temp / 7]
+      let day = data.data[0]
+      let div = document.getElementById('weather');
+      let card = document.createElement('div');
+      card.classList.add('cards');
+      let date = document.createElement('h3');
+      date.id = "date";
+      date.innerHTML = day.datetime;
+      let img = document.createElement('img');
+    
+      if (day.precip == 0 & day.snow == 0) {
+        img.src = "//ssl.gstatic.com/onebox/weather/48/sunny.png"
+      } else if (day.precip > 0 & day.snow == 0) {
+        img.src = "//ssl.gstatic.com/onebox/weather/48/rain.png"
+      } else if (day.precip == 0 & day.snow > 0) {
+        img.src = "//ssl.gstatic.com/onebox/weather/48/snow_light.png"
+      } else if (day.precip > 0 & day.snow > 0) {
+        img.src = "//ssl.gstatic.com/onebox/weather/48/snow_s_rain.png"
+      }
+    
+      let minTemp = document.createElement('h3');
+      minTemp.innerHTML = `Avg Low:${Math.trunc(minAverage)}°C`;
+      minTemp.id = "minTemp";
+      let maxTemp = document.createElement('h3');
+      maxTemp.innerHTML = `Avg High:${Math.trunc(maxAverage)}°C`;
+      maxTemp.id = "maxTemp"
+      card.appendChild(date);
+      card.appendChild(img);
+      card.appendChild(minTemp);
+      card.appendChild(maxTemp);
+      div.appendChild(card);
+    } else {
+      let day = data.data[0]
+      let div = document.getElementById('weather');
+      let card = document.createElement('div');
+      card.classList.add('cards');
+      let date = document.createElement('h3');
+      date.id = "date";
+      date.innerHTML = day.datetime;
+      let img = document.createElement('img');
+    
+      if (day.precip == 0 & day.snow == 0) {
+        img.src = "//ssl.gstatic.com/onebox/weather/48/sunny.png"
+      } else if (day.precip > 0 & day.snow == 0) {
+        img.src = "//ssl.gstatic.com/onebox/weather/48/rain.png"
+      } else if (day.precip == 0 & day.snow > 0) {
+        img.src = "//ssl.gstatic.com/onebox/weather/48/snow_light.png"
+      } else if (day.precip > 0 & day.snow > 0) {
+        img.src = "//ssl.gstatic.com/onebox/weather/48/snow_s_rain.png"
+      }
+    
+      let temperature = document.createElement('h3');
+      temperature.innerHTML = `Temp:${day.temp}°C`;
+      temperature.id = "temp"
+      card.appendChild(date);
+      card.appendChild(img);
+      card.appendChild(temperature);
+      div.appendChild(card);
+    }
+  };
 
 /***/ })
 
@@ -383,38 +537,18 @@ var __webpack_exports__ = {};
   \********************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/main.scss */ "./src/client/styles/main.scss");
-/* harmony import */ var _secondConverter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./secondConverter */ "./src/client/js/secondConverter.js");
-/* harmony import */ var _pixFetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pixFetch */ "./src/client/js/pixFetch.js");
-/* harmony import */ var _geoFetch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./geoFetch */ "./src/client/js/geoFetch.js");
-/* harmony import */ var _checkForDate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./checkForDate */ "./src/client/js/checkForDate.js");
-/* harmony import */ var _forecastOrCurrent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./forecastOrCurrent */ "./src/client/js/forecastOrCurrent.js");
-/* harmony import */ var _listener__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./listener */ "./src/client/js/listener.js");
+/* harmony import */ var _pixUpdate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pixUpdate */ "./src/client/js/pixUpdate");
+/* harmony import */ var _weatherUpdate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./weatherUpdate */ "./src/client/js/weatherUpdate.js");
+/* harmony import */ var _listener__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./listener */ "./src/client/js/listener.js");
 
 
 
 
 
 
-
-
-
-//Define form
-let formInput = document.getElementById('placeInput');
-
-//Runs everything need to work the api's from the other files
-const submitForm = async () => {
-    let formDate = document.getElementById('dateInput').value;
-    let dateInput = await (0,_secondConverter__WEBPACK_IMPORTED_MODULE_1__.secondConverter)(formDate);
-    (0,_pixFetch__WEBPACK_IMPORTED_MODULE_2__.pixAPI)(formInput);
-    (0,_geoFetch__WEBPACK_IMPORTED_MODULE_3__.geoAPI)(formInput);
-    await (0,_checkForDate__WEBPACK_IMPORTED_MODULE_4__.checkForDate)(dateInput);
-    await (0,_forecastOrCurrent__WEBPACK_IMPORTED_MODULE_5__.forecastOrCurrent)(dateInput);
-    console.log(dateInput);
-};
-
-//Imported EventListener that runs submitForm
+//Imported EventListener that runs weatherUpdate
 document.addEventListener('DOMContentLoaded', function () {
-  (0,_listener__WEBPACK_IMPORTED_MODULE_6__.formListener)(submitForm);
+  (0,_listener__WEBPACK_IMPORTED_MODULE_3__.formListener)(_weatherUpdate__WEBPACK_IMPORTED_MODULE_2__.weatherUpdate, _pixUpdate__WEBPACK_IMPORTED_MODULE_1__.pixUpdate);
 });
 })();
 

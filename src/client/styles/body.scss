@@ -70,19 +70,26 @@ body {
             }
 
             #submitBtn {
-                width: 90%;
-                margin: 2% 30%;
+                width: 30%;
+                margin: 2% 45%;
+                border: none;
             }
 
-            @media screen and (min-width: $medium) {
-                #removeBtn {
+            #submitBtn:hover {
+                border: 1px solid black;
+            }
+
+            @media screen and (min-width: $small){
+                #submitBtn {
                     width: 20%;
+                    margin: 2% 25%;
                 }
             }
 
-            @media screen and (min-width: $small) and (max-width: $medium) {
-                #removeBtn {
-                    width: 30%;
+            @media screen and (min-width: $large){
+                #submitBtn {
+                    width: 10%;
+                    margin: 2% 25%;
                 }
             }
 
