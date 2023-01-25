@@ -10,16 +10,7 @@ For Server:
 npm i express  
 npm run start  
 
-For Production:  
-Create file called mockJSEnv.js in root  
-You have to go to each website and get your own api keys to use this website.  
-export const weatherApiKey = (Your weatherbit.io api key);  
-export const geoApiKey = (Your geonames.org api key);  
-export const pixApiKey = (Your pixabay.com api key);  
-export const formDate = '2023-01-11T22:41:38.540Z'  
-export const formInput = "raleigh";  
-
-For Development:  
+For Prod and for Dev VERY IMPORTANT:  
 Create file called mockJSEnv.js in root  
 You have to go to each website and get your own api keys to use this website.  
 export const weatherApiKey = (Your weatherbit.io api key);  
