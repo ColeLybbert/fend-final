@@ -11,7 +11,6 @@ var Client;
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "card": () => (/* binding */ card),
 /* harmony export */   "formDate": () => (/* binding */ formDate),
 /* harmony export */   "formInput": () => (/* binding */ formInput),
 /* harmony export */   "geoApiKey": () => (/* binding */ geoApiKey),
@@ -23,45 +22,6 @@ const geoApiKey = 'cole200406';
 const pixApiKey = '32251964-d3a8f6eb7f41a7da2ca59e329';
 const formDate = '2023-01-11T22:41:38.540Z'
 const formInput = "raleigh";
-const card = {
-    app_max_temp: 10.3,
-    app_min_temp: -1.4,
-    clouds: 61,
-    clouds_hi: 0,
-    clouds_low: 61,
-    clouds_mid: 1,
-    datetime: "2023-01-23",
-    dewpt: 1.8,
-    high_temp: 10.3,
-    low_temp: -0.2,
-    max_dhi: null,
-    max_temp: 10.3,
-    min_temp: 0.9,
-    moon_phase: 0.071994,
-    moon_phase_lunation: 0.07,
-    moonrise_ts: 1674482456,
-    moonset_ts: 1674521493,
-    ozone: 302.6,
-    pop: 40,
-    precip: 1.3849945,
-    pres: 1003,
-    rh: 74,
-    slp: 1014.3,
-    snow: 0,
-    snow_depth: 0,
-    sunrise_ts: 1674476421,
-    sunset_ts: 1674513157,
-    temp: 6.6,
-    ts: 1674457260,
-    uv: 3.1,
-    valid_date: "2023-01-23",
-    vis: 22.072,
-    wind_cdir: "W",
-    wind_cdir_full: "west",
-    wind_dir: 272,
-    wind_gust_spd: 9.7,
-    wind_spd: 4.6
-}
 
 /***/ }),
 
@@ -267,10 +227,10 @@ const pixAPI = async (formInput) => {
 
 /***/ }),
 
-/***/ "./src/client/js/pixUpdate":
-/*!*********************************!*\
-  !*** ./src/client/js/pixUpdate ***!
-  \*********************************/
+/***/ "./src/client/js/pixUpdate.js":
+/*!************************************!*\
+  !*** ./src/client/js/pixUpdate.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -537,7 +497,7 @@ var __webpack_exports__ = {};
   \********************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/main.scss */ "./src/client/styles/main.scss");
-/* harmony import */ var _pixUpdate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pixUpdate */ "./src/client/js/pixUpdate");
+/* harmony import */ var _pixUpdate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pixUpdate */ "./src/client/js/pixUpdate.js");
 /* harmony import */ var _weatherUpdate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./weatherUpdate */ "./src/client/js/weatherUpdate.js");
 /* harmony import */ var _listener__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./listener */ "./src/client/js/listener.js");
 

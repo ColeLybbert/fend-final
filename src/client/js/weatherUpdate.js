@@ -8,7 +8,7 @@ export const weatherUpdate = async (formDate, formInput) => {
     let dateInput = await secondConverter(formDate);
     await checkForDate(dateInput);
     let data = await forecastOrCurrent(dateInput, formInput);
-    let trueOrFalse = await checkForDate();
+    let trueOrFalse = await checkForDate(dateInput);
     if (trueOrFalse){
       let minAverage = [data.data[0].min_temp + data.data[1].min_temp +data.data[2].min_temp + data.data[3].min_temp + data.data[4].min_temp + data.data[5].min_temp + data.data[6].min_temp / 7]
       let maxAverage = [data.data[0].max_temp + data.data[1].max_temp +data.data[2].max_temp + data.data[3].max_temp + data.data[4].max_temp + data.data[5].max_temp + data.data[6].max_temp / 7]

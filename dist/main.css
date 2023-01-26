@@ -37,6 +37,11 @@ body #mainBody form #inputs input {
   margin: 2% 0% 2% 2%;
   width: 90%;
   padding: 0% 2%;
+  background-color: grey;
+  border: none;
+}
+body #mainBody form #inputs input:hover {
+  border: 1px solid black;
 }
 @media screen and (min-width: 650px) {
   body #mainBody form #inputs input {
@@ -61,17 +66,24 @@ body #mainBody form #inputs input {
   }
 }
 body #mainBody form #submitBtn {
-  width: 90%;
-  margin: 2% 30%;
+  width: 30%;
+  margin: 2% 45%;
+  border: none;
+  background-color: gray;
 }
-@media screen and (min-width: 650px) {
-  body #mainBody form #removeBtn {
+body #mainBody form #submitBtn:hover {
+  border: 1px solid black;
+}
+@media screen and (min-width: 400px) {
+  body #mainBody form #submitBtn {
     width: 20%;
+    margin: 2% 25%;
   }
 }
-@media screen and (min-width: 400px) and (max-width: 650px) {
-  body #mainBody form #removeBtn {
-    width: 30%;
+@media screen and (min-width: 800px) {
+  body #mainBody form #submitBtn {
+    width: 10%;
+    margin: 2% 25%;
   }
 }
 body #mainBody form #pictures {
@@ -195,6 +207,12 @@ body #mainBody form #weather .cards #maxTemp {
   body #mainBody form #weather .cards {
     width: 40%;
     margin: 2% 30%;
+  }
+}
+@media screen and (min-width: 650px) {
+  body #mainBody form {
+    width: 50%;
+    margin: 5% 25%;
   }
 }
 
