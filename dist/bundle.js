@@ -367,7 +367,7 @@ const weatherUpdate = async (formDate, formInput) => {
     let dateInput = await (0,_secondConverter__WEBPACK_IMPORTED_MODULE_2__.secondConverter)(formDate);
     await (0,_checkForDate__WEBPACK_IMPORTED_MODULE_0__.checkForDate)(dateInput);
     let data = await (0,_forecastOrCurrent__WEBPACK_IMPORTED_MODULE_1__.forecastOrCurrent)(dateInput, formInput);
-    let trueOrFalse = await (0,_checkForDate__WEBPACK_IMPORTED_MODULE_0__.checkForDate)();
+    let trueOrFalse = await (0,_checkForDate__WEBPACK_IMPORTED_MODULE_0__.checkForDate)(dateInput);
     if (trueOrFalse){
       let minAverage = [data.data[0].min_temp + data.data[1].min_temp +data.data[2].min_temp + data.data[3].min_temp + data.data[4].min_temp + data.data[5].min_temp + data.data[6].min_temp / 7]
       let maxAverage = [data.data[0].max_temp + data.data[1].max_temp +data.data[2].max_temp + data.data[3].max_temp + data.data[4].max_temp + data.data[5].max_temp + data.data[6].max_temp / 7]

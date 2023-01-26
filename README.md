@@ -6,7 +6,6 @@ The Time the user entered is sent to the secondConverter.js file where the strin
 # Instructions:  
 Open Terminal  
 
-Directions:
 Create file called mockJSEnv.js in root THIS IS VERY IMPORTANT
 You have to go to each website and get your own api keys to use this website.  
 export const weatherApiKey = (Your weatherbit.io api key);  
@@ -17,9 +16,11 @@ export const formInput = "raleigh";
 
 npm i 
 npm i express  
-npm run start  
+npm i jest
 npm run prod
-npm run dev(after you have ran npm run prod at least once),  
-Enter location you want to go on the UI,  
-Enter the date you will arrive.  
+npm run test
+npm run start  
+npm run dev  
+Enter location you want to go on the UI 
+Enter the date you will arrive
 Press submit(Both inputs have to be completed or else it won't submit)  
