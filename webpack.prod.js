@@ -53,7 +53,10 @@ module.exports = {
       filename: "index.html",
       template: "src/client/html/index.html",
     }),
-    new WorkboxPlugin.GenerateSW(),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
+    }),
     new MiniCssExtractPlugin({ filename: "[name].css" }),
   ],
 };

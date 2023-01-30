@@ -325,7 +325,6 @@ const weatherAPI = async (formInput) => {
         let latlon = await returnLatLon(data)
         const res = await fetch(`${weatherBaseUrl}?${latlon}&key=${_mockJSEnv__WEBPACK_IMPORTED_MODULE_0__.weatherApiKey}&include=minutely`);
         const apiData = await res.json();
-        console.log(apiData)
         return (apiData);
     }catch (err) {
         return `Failed ${err}`
@@ -510,6 +509,16 @@ __webpack_require__.r(__webpack_exports__);
 document.addEventListener('DOMContentLoaded', function () {
   (0,_listener__WEBPACK_IMPORTED_MODULE_3__.formListener)(_weatherUpdate__WEBPACK_IMPORTED_MODULE_2__.weatherUpdate, _pixUpdate__WEBPACK_IMPORTED_MODULE_1__.pixUpdate);
 });
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js').then(registration => {
+      console.log('SW registered: ', registration);
+    }).catch(registrationError => {
+      console.log('SW registration failed: ', registrationError);
+    });
+  });
+}
 })();
 
 Client = __webpack_exports__;

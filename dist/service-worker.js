@@ -67,13 +67,10 @@ if (!self.define) {
     });
   };
 }
-define(['./workbox-8b6cdeda'], (function (workbox) { 'use strict';
+define(['./workbox-0b008d8b'], (function (workbox) { 'use strict';
 
-  self.addEventListener('message', event => {
-    if (event.data && event.data.type === 'SKIP_WAITING') {
-      self.skipWaiting();
-    }
-  });
+  self.skipWaiting();
+  workbox.clientsClaim();
 
   /**
    * The precacheAndRoute() method efficiently caches and responds to
@@ -82,10 +79,10 @@ define(['./workbox-8b6cdeda'], (function (workbox) { 'use strict';
    */
   workbox.precacheAndRoute([{
     "url": "bundle.js",
-    "revision": "b9a0f05a4cc600e5dfe763a09e03345f"
+    "revision": "6335a8b34df40f30c6d8975c487e7131"
   }, {
     "url": "index.html",
-    "revision": "64fb366b7de4efe442f4767891f95282"
+    "revision": "f7073b9a3a521aa6295586fd3a49e82e"
   }, {
     "url": "main.css",
     "revision": "1a4063afbf51ae013d2f32f946958594"
