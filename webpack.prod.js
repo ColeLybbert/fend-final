@@ -54,8 +54,6 @@ module.exports = {
       template: "src/client/html/index.html",
     }),
     new WorkboxPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true,
     }),
     new MiniCssExtractPlugin({ filename: "[name].css" }),
   ],
